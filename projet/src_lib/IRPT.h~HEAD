@@ -1,0 +1,28 @@
+ #ifndef __IRPT_H__
+ #define __IRPT_H__
+
+ // CPU CLOCK SPEED
+ #ifndef F_CPU
+ # define F_CPU 8000000UL
+ #endif
+
+ // C/avr libraries
+ #include <avr/io.h>
+ #include <can.h>
+
+
+ class IRPT{
+ private:
+    uint8_t activatedPin_; // The pin which the PNA4602 is connected to
+    void activatePin_(uint8_t pin);
+    void init_();
+    uint8_t isHigh_();
+ public:
+    IRPT();         // take D2 as a default pin 
+    IRPT(uint8_t pin);         // Give pin as string in parameter 
+    void setPort(uint8_t newPin);   // Activate a specific pin and disactivate the old if changed
+    uint8_t read();
+ };
+
+
+ #endif //__IRPT_CPP__
